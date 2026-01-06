@@ -23,6 +23,17 @@ client.on('ready', () => {
   console.log('🤖 Bot conectado com sucesso!');
 });
 
+client.getChats().then(chats => {
+  chats
+    .filter(chat => chat.isGroup)
+    .forEach(group => {
+      console.log('📌 Grupo:', group.name);
+      console.log('🆔 ID:', group.id._serialized);
+      console.log('-----------------------');
+    });
+});
+
+
 // ⏰ Todo dia às 09:00
 cron.schedule('0 9 * * *', async () => {
   const hoje = new Date();
